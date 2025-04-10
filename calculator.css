@@ -1,0 +1,436 @@
+/* Define CSS Variables in :root for global scope */
+:root {
+    /* Default Theme Variables (Darkish) */
+    --body-bg: #f0f0f0;
+    --calc-bg: #333;
+    --display-bg: #444;
+    --display-text: #fff;
+    --button-bg: #555;
+    --button-text: #fff;
+    --button-hover-bg: #666;
+    --button-active-bg: #777;
+    --operator-bg: #f0ad4e;
+    --operator-hover-bg: #ec971f;
+    --operator-active-bg: #d58512;
+    --clear-bg: #d9534f;
+    --clear-hover-bg: #c9302c;
+    --clear-active-bg: #ac2925;
+    --equals-bg: #5cb85c;
+    --equals-hover-bg: #4cae4c;
+    --equals-active-bg: #449d44;
+    --settings-bg: #ffffff;
+    --settings-text: #333333;
+    --settings-border: #cccccc;
+
+    /* Font Variable */
+    --main-font: sans-serif; /* Default font */
+}
+
+/* Light Theme */
+html.theme-light {
+    --body-bg: #ffffff;
+    --calc-bg: #e0e0e0;
+    --display-bg: #f5f5f5;
+    --display-text: #333;
+    --button-bg: #d0d0d0;
+    --button-text: #333;
+    --button-hover-bg: #c0c0c0;
+    --button-active-bg: #b0b0b0;
+    --operator-bg: #87ceeb; /* Sky blue */
+    --operator-hover-bg: #76bfe0;
+    --operator-active-bg: #65afd5;
+    --clear-bg: #ff7f7f; /* Light red */
+    --clear-hover-bg: #ff6a6a;
+    --clear-active-bg: #ff5555;
+    --equals-bg: #90ee90; /* Light green */
+    --equals-hover-bg: #7adc7a;
+    --equals-active-bg: #6aca6a;
+    --settings-bg: #f8f8f8;
+    --settings-text: #222222;
+    --settings-border: #bbbbbb;
+}
+
+/* Blue Theme */
+html.theme-blue {
+    --body-bg: #e0f7fa; /* Light cyan */
+    --calc-bg: #0077cc; /* Strong blue */
+    --display-bg: #005fa3;
+    --display-text: #ffffff;
+    --button-bg: #0099ff; /* Lighter blue */
+    --button-text: #ffffff;
+    --button-hover-bg: #33aaff;
+    --button-active-bg: #0077cc;
+    --operator-bg: #ffcc00; /* Yellow */
+    --operator-hover-bg: #e6b800;
+    --operator-active-bg: #cca300;
+    --clear-bg: #cc0000; /* Darker red */
+    --clear-hover-bg: #e60000;
+    --clear-active-bg: #b30000;
+    --equals-bg: #00cc66; /* Green */
+    --equals-hover-bg: #00e673;
+    --equals-active-bg: #00b359;
+    --settings-bg: #ffffff;
+    --settings-text: #003366;
+    --settings-border: #0077cc;
+}
+
+/* Forest Theme */
+html.theme-forest {
+    --body-bg: #f5f5dc; /* Beige */
+    --calc-bg: #556b2f; /* Dark Olive Green */
+    --display-bg: #6b8e23; /* Olive Drab */
+    --display-text: #ffffff;
+    --button-bg: #8fbc8f; /* Dark Sea Green */
+    --button-text: #2f4f4f; /* Dark Slate Gray */
+    --button-hover-bg: #7aac7a;
+    --button-active-bg: #699b69;
+    --operator-bg: #cd853f; /* Peru */
+    --operator-hover-bg: #b87333;
+    --operator-active-bg: #a36629;
+    --clear-bg: #bc8f8f; /* Rosy Brown */
+    --clear-hover-bg: #ae8181;
+    --clear-active-bg: #a07373;
+    --equals-bg: #d2b48c; /* Tan */
+    --equals-hover-bg: #c1a37b;
+    --equals-active-bg: #b0926a;
+    --settings-bg: #f5f5dc;
+    --settings-text: #556b2f;
+    --settings-border: #8fbc8f;
+}
+
+
+/* Apply Variables */
+body {
+    display: flex;
+    justify-content: center;
+
+/* Mobile Responsive Styles */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+        margin: 0;
+    }
+    
+    #calculator {
+        width: 100%;
+        max-width: 320px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+    
+    #display {
+        height: 50px;
+        font-size: 2em;
+    }
+    
+    .buttons {
+        gap: 8px;
+    }
+    
+    button {
+        padding: 15px;
+        font-size: 1.3em;
+    }
+    
+    #settings-menu {
+        width: 90%;
+        max-width: 320px;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+}
+
+/* Image Theme Specific Styles */
+html.theme-image #calculator {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--body-bg);
+    font-family: var(--main-font); /* Use font variable */
+    transition: background-color 0.3s ease; /* Smooth theme transition */
+    position: relative; /* Needed for absolute positioning of settings button */
+}
+
+#calculator {
+    background-color: var(--calc-bg);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 320px;
+    transition: background-color 0.3s ease;
+}
+
+#display {
+    width: calc(100% - 20px);
+    height: 60px;
+    background-color: var(--display-bg);
+    color: var(--display-text);
+    font-size: 2.5em;
+    text-align: right;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    padding: 20px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: inherit; /* Inherit font from body */
+}
+
+button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+button:active {
+    background-color: var(--button-active-bg);
+}
+
+.operator {
+    background-color: var(--operator-bg);
+    color: var(--button-text); /* Operators often share button text color */
+}
+.operator:hover {
+    background-color: var(--operator-hover-bg);
+}
+ .operator:active {
+    background-color: var(--operator-active-bg);
+}
+
+#clear {
+    background-color: var(--clear-bg);
+    color: var(--button-text);
+    grid-column: span 2;
+}
+ #clear:hover {
+    background-color: var(--clear-hover-bg);
+}
+ #clear:active {
+    background-color: var(--clear-active-bg);
+}
+
+#equals {
+    background-color: var(--equals-bg);
+    color: var(--button-text);
+    grid-column: span 2;
+}
+ #equals:hover {
+    background-color: var(--equals-hover-bg);
+}
+ #equals:active {
+    background-color: var(--equals-active-bg);
+}
+
+#zero {
+     grid-column: span 2; /* Make zero wider */
+}
+
+
+/* Settings Button Styles */
+#settings-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.8em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--calc-bg); /* Use calculator bg color for contrast */
+    padding: 5px;
+    line-height: 1;
+    z-index: 1001; /* Ensure it's above the settings menu when closed */
+}
+#settings-btn:hover {
+    opacity: 0.7;
+}
+
+
+/* Settings Menu Styles */
+#settings-menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--settings-bg);
+    color: var(--settings-text);
+    transition: transform 0.5s ease, opacity 0.4s ease;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid var(--settings-border);
+    transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+#settings-menu.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#settings-menu h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    color: inherit; /* Inherit color from menu */
+}
+
+#close-settings-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px; /* Changed from right to left */
+    font-size: 1.8em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit; /* Inherit color */
+    padding: 0;
+    line-height: 1;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease;
+}
+#close-settings-btn:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#settings-menu fieldset {
+    border: 1px solid var(--settings-border);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+}
+
+#settings-menu legend {
+    font-weight: bold;
+    padding: 0 5px;
+    color: inherit;
+}
+
+#settings-menu label {
+    margin-left: 5px;
+    cursor: pointer;
+}
+#settings-menu input[type="radio"] {
+    cursor: pointer;
+}
+
+#settings-menu div {
+    margin-bottom: 8px;
+}
+
+/* Custom Theme Options */
+#custom-theme-options {
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    max-height: 0; /* Initially hide */
+    opacity: 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: -10px; /* Adjust spacing when hidden */
+    border-top: none; /* Avoid double border */
+}
+
+#custom-theme-options.visible {
+     max-height: 500px; /* Allow space to expand */
+     opacity: 1;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     margin-top: 0;
+     border-top: 1px solid var(--settings-border);
+}
+
+
+#custom-theme-options label {
+    display: inline-block;
+    width: 120px; /* Align labels */
+    margin-right: 10px;
+}
+
+#custom-theme-options input[type="color"] {
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid var(--settings-border);
+    padding: 2px;
+    background-color: var(--settings-bg); /* Match menu background */
+    width: 40px; /* Adjust size */
+    height: 25px;
+}
+
+/* Image Theme Options Styles */
+#image-theme-options {
+    margin-top: 15px;
+}
+
+#image-theme-options .image-theme-controls {
+    margin-top: 10px;
+}
+
+#image-theme-options input[type="file"] {
+    margin: 8px 0;
+    max-width: 100%;
+}
+
+#image-preview-container {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#image-preview-container.hidden {
+    display: none;
+}
+
+#image-preview {
+    max-width: 100%;
+    max-height: 150px;
+    border: 1px solid var(--settings-border);
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.settings-button {
+    background-color: var(--calc-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    margin: 8px 4px 0 0;
+    cursor: pointer;
+}
+
+.settings-button:hover {
+    opacity: 0.9;
+}
+
+.settings-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

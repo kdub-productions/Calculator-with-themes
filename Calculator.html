@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator with Themes</title>
+    <link rel="stylesheet" href="calculator.css">
+    <!-- Link to an icon library like Font Awesome (optional, using text gear for now) -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
+</head>
+<body>
+
+    <!-- Settings Gear Button -->
+    <button id="settings-btn" aria-label="Open Settings">⚙️</button>
+    <!-- Or using Font Awesome: <button id="settings-btn"><i class="fas fa-cog"></i></button> -->
+
+    <div id="calculator">
+        <!-- Display Screen -->
+        <input type="text" id="display" value="0" readonly>
+
+        <!-- Calculator Buttons -->
+        <div class="buttons">
+             <!-- Row 1 -->
+            <button id="clear" data-action="clear">C</button>
+            <button class="operator" data-action="operator" value="/">/</button>
+            <button class="operator" data-action="operator" value="*">*</button>
+
+            <!-- Row 2 -->
+            <button data-action="number" value="7">7</button>
+            <button data-action="number" value="8">8</button>
+            <button data-action="number" value="9">9</button>
+            <button class="operator" data-action="operator" value="-">-</button>
+
+            <!-- Row 3 -->
+            <button data-action="number" value="4">4</button>
+            <button data-action="number" value="5">5</button>
+            <button data-action="number" value="6">6</button>
+            <button class="operator" data-action="operator" value="+">+</button>
+
+             <!-- Row 4 -->
+            <button data-action="number" value="1">1</button>
+            <button data-action="number" value="2">2</button>
+            <button data-action="number" value="3">3</button>
+             <button id="equals" data-action="calculate" value="=">=</button> <!-- Moved equals here -->
+
+            <!-- Row 5 -->
+            <button id="zero" data-action="number" value="0">0</button>
+            <button data-action="decimal" value=".">.</button>
+             <!-- Equals moved up -->
+        </div>
+    </div>
+
+    <!-- Settings Menu (Initially Hidden) -->
+    <div id="settings-menu" class="hidden">
+        <button id="close-settings-btn" aria-label="Close Settings">&times;</button>
+        <h2>Settings</h2>
+
+        <fieldset>
+            <legend>Theme</legend>
+            <div>
+                <input type="radio" id="theme-default" name="theme" value="default" checked>
+                <label for="theme-default">Default</label>
+            </div>
+            <div>
+                <input type="radio" id="theme-light" name="theme" value="light">
+                <label for="theme-light">Light</label>
+            </div>
+            <div>
+                <input type="radio" id="theme-blue" name="theme" value="blue">
+                <label for="theme-blue">Blue</label>
+            </div>
+             <div>
+                <input type="radio" id="theme-forest" name="theme" value="forest">
+                <label for="theme-forest">Forest</label>
+            </div>
+            <div>
+                <input type="radio" id="theme-custom" name="theme" value="custom">
+                <label for="theme-custom">Custom</label>
+            </div>
+        </fieldset>
+
+        <fieldset id="custom-theme-options" class="hidden">
+            <legend>Custom Theme Colors</legend>
+            <div>
+                <label for="custom-bg">Calculator BG:</label>
+                <input type="color" id="custom-bg" data-var="--calc-bg">
+            </div>
+            <div>
+                <label for="custom-display-bg">Display BG:</label>
+                <input type="color" id="custom-display-bg" data-var="--display-bg">
+            </div>
+             <div>
+                <label for="custom-display-text">Display Text:</label>
+                <input type="color" id="custom-display-text" data-var="--display-text">
+            </div>
+            <div>
+                <label for="custom-button-bg">Button BG:</label>
+                <input type="color" id="custom-button-bg" data-var="--button-bg">
+            </div>
+             <div>
+                <label for="custom-button-text">Button Text:</label>
+                <input type="color" id="custom-button-text" data-var="--button-text">
+            </div>
+             <div>
+                <label for="custom-operator-bg">Operator BG:</label>
+                <input type="color" id="custom-operator-bg" data-var="--operator-bg">
+            </div>
+            <!-- Add more color pickers as needed (e.g., clear, equals, hover) -->
+        </fieldset>
+
+        <fieldset>
+            <legend>Font</legend>
+            <div>
+                <input type="radio" id="font-sans" name="font" value="sans-serif" checked>
+                <label for="font-sans">Sans-serif</label>
+            </div>
+            <div>
+                <input type="radio" id="font-serif" name="font" value="serif">
+                <label for="font-serif">Serif</label>
+            </div>
+            <div>
+                <input type="radio" id="font-mono" name="font" value="monospace">
+                <label for="font-mono">Monospace</label>
+            </div>
+        </fieldset>
+
+        <fieldset id="image-theme-options">
+            <legend>Image Theme</legend>
+            <div>
+                <label for="theme-image-upload">Upload Image:</label>
+                <input type="file" id="theme-image-upload" accept="image/*">
+            </div>
+            <div class="image-theme-controls">
+                <div>
+                    <input type="checkbox" id="use-image-as-background" checked>
+                    <label for="use-image-as-background">Use as calculator background</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="use-image-as-body-background">
+                    <label for="use-image-as-body-background">Use as page background</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="extract-colors-from-image" checked>
+                    <label for="extract-colors-from-image">Extract colors from image</label>
+                </div>
+                <button id="apply-image-theme" class="settings-button" disabled>Apply Image Theme</button>
+                <button id="reset-image-theme" class="settings-button">Reset</button>
+            </div>
+            <div id="image-preview-container" class="hidden">
+                <p>Preview:</p>
+                <img id="image-preview" src="" alt="Theme preview">
+            </div>
+        </fieldset>
+
+         <!-- Layout Options Placeholder -->
+         <!--
+         <fieldset>
+            <legend>Layout</legend>
+            <div>
+                <input type="radio" id="layout-standard" name="layout" value="standard" checked>
+                <label for="layout-standard">Standard</label>
+            </div>
+             <div>
+                <input type="radio" id="layout-alt" name="layout" value="alternative">
+                <label for="layout-alt">Alternative</label>
+            </div>
+         </fieldset>
+         -->
+
+    </div>
+
+    <!-- Link to JavaScript file -->
+    <script src="calculator.js"></script>
+    <script src="otherfunctions.js"></script>
+</body>
+</html>
