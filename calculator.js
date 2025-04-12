@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const display = document.getElementById('display');
     const buttonsContainer = document.querySelector('.buttons'); 
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const customColorPickers = customThemeOptions.querySelectorAll('input[type="color"]');
     const root = document.documentElement;
     
-    // Image theme elements
     const imageUploadInput = document.getElementById('theme-image-upload');
     const applyImageThemeBtn = document.getElementById('apply-image-theme');
     const resetImageThemeBtn = document.getElementById('reset-image-theme');
@@ -21,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const imagePreviewContainer = document.getElementById('image-preview-container');
     const imagePreview = document.getElementById('image-preview');
     
-    // Store the uploaded image data
     let uploadedImage = null;
 
     let currentInput = '0';
@@ -41,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
             applyImageTheme();
         }
         
-        // Show/hide appropriate settings sections
         customThemeOptions.classList.toggle('visible', themeName === 'custom');
         imagePreviewContainer.classList.toggle('hidden', themeName !== 'image');
         
@@ -84,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedTheme = localStorage.getItem('calculatorTheme') || 'default';
         const savedFont = localStorage.getItem('calculatorFont') || 'sans-serif';
 
-        // Load saved image if it exists
         const savedImageData = localStorage.getItem('calculatorImageTheme');
         if (savedImageData) {
             uploadedImage = savedImageData;
@@ -115,20 +110,14 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSettingsButtonColor();
     }
 
-    // --- Calculator Logic Implementation ---
 
     function updateDisplay() {
-        // Handle potential "Infinity" or "NaN" results gracefully
         if (currentInput === 'Infinity' || currentInput === '-Infinity' || isNaN(currentInput) && currentInput !== 'Error') {
             currentInput = 'Error';
         }
-        // Limit display length if necessary (optional)
-        // const maxLength = 12;
-        // display.value = currentInput.toString().slice(0, maxLength);
         display.value = currentInput;
 
     }
-
     function clearCalculator() {
         currentInput = '0';
         previousInput = '';
