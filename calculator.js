@@ -1,3 +1,7 @@
+import { inject } from '@vercel/analytics';
+
+inject();
+
 document.addEventListener('DOMContentLoaded', () => {
     const display = document.getElementById('display');
     const buttonsContainer = document.querySelector('.buttons'); 
